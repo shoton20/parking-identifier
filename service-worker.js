@@ -9,21 +9,21 @@ const MAP_CACHE = 'parkingpal-maps-v1';
 
 // Static assets to cache on install
 const STATIC_ASSETS = [
-    '/',
-    '/index.html',
-    '/styles/main.css',
-    '/scripts/app.js',
-    '/scripts/services/location.js',
-    '/scripts/services/photo.js',
-    '/scripts/services/storage.js',
-    '/scripts/services/map.js',
-    '/scripts/services/timer.js',
-    '/scripts/services/notification.js',
-    '/scripts/services/navigation.js',
-    '/scripts/managers/session.js',
-    '/scripts/managers/offline.js',
-    '/scripts/managers/pwa-install.js',
-    '/manifest.json',
+    '/parking-identifier/',
+    '/parking-identifier/index.html',
+    '/parking-identifier/styles/main.css',
+    '/parking-identifier/scripts/app.js',
+    '/parking-identifier/scripts/services/location.js',
+    '/parking-identifier/scripts/services/photo.js',
+    '/parking-identifier/scripts/services/storage.js',
+    '/parking-identifier/scripts/services/map.js',
+    '/parking-identifier/scripts/services/timer.js',
+    '/parking-identifier/scripts/services/notification.js',
+    '/parking-identifier/scripts/services/navigation.js',
+    '/parking-identifier/scripts/managers/session.js',
+    '/parking-identifier/scripts/managers/offline.js',
+    '/parking-identifier/scripts/managers/pwa-install.js',
+    '/parking-identifier/manifest.json',
     'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
     'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
 ];
@@ -128,7 +128,7 @@ self.addEventListener('fetch', (event) => {
             .catch(() => {
                 // Return offline page if available
                 if (request.mode === 'navigate') {
-                    return caches.match('/offline.html').then(response => {
+                    return caches.match('/parking-identifier/offline.html').then(response => {
                         return response || new Response('Offline', {
                             status: 503,
                             statusText: 'Service Unavailable'
