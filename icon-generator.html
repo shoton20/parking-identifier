@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generator - ParkingPal Lite</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #4A90E2;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        canvas {
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        button {
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #3A7BC8;
+        }
+        .preview {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .preview-item {
+            text-align: center;
+        }
+        .preview-item img {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+        }
+        .instructions {
+            background-color: #e7f3ff;
+            border-left: 4px solid #4A90E2;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .instructions h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚗 ParkingPal Icon Generator</h1>
+        
+        <div class="instructions">
+            <h3>Quick Instructions:</h3>
+            <ol>
+                <li>Click "Generate Icons" below</li>
+                <li>Right-click each icon and "Save image as..."</li>
+                <li>Save them in the <code>icons/</code> folder with the exact names shown</li>
+                <li>Refresh your app and you're done!</li>
+            </ol>
+        </div>
+
+        <button onclick="generateIcons()">Generate Icons</button>
+        
+        <div id="preview" class="preview"></div>
+    </div>
+
+    <script>
+        function generateIcons() {
+            const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+            const preview = document.getElementById('preview');
+            preview.innerHTML = '';
+
+            sizes.forEach(size => {
+                // Create canvas
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+
+                // Draw background
+                ctx.fillStyle = '#4A90E2';
+                ctx.fillRect(0, 0, size, size);
+
+                // Draw car emoji or P letter
+                ctx.fillStyle = 'white';
+                ctx.font = `bold ${size * 0.6}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('P', size / 2, size / 2);
+
+                // Add border
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = size * 0.05;
+                ctx.strokeRect(size * 0.1, size * 0.1, size * 0.8, size * 0.8);
+
+                // Convert to image
+                const img = document.createElement('img');
+                img.src = canvas.toDataURL('image/png');
+                img.width = Math.min(size, 192); // Limit display size
+
+                // Create preview item
+                const item = document.createElement('div');
+                item.className = 'preview-item';
+                item.innerHTML = `
+                    <div><strong>icon-${size}x${size}.png</strong></div>
+                    <div style="margin: 10px 0;">${img.outerHTML}</div>
+                    <div style="font-size: 12px; color: #6c757d;">${size}x${size}px</div>
+                `;
+
+                preview.appendChild(item);
+            });
+
+            // Add download instructions
+            const instructions = document.createElement('div');
+            instructions.style.cssText = 'width: 100%; margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px;';
+            instructions.innerHTML = `
+                <strong>📥 How to Save:</strong><br>
+                Right-click each icon above → "Save image as..." → Save to <code>icons/</code> folder<br>
+                <strong>Important:</strong> Use the exact filenames shown (e.g., icon-192x192.png)
+            `;
+            preview.appendChild(instructions);
+        }
+
+        // Auto-generate on load
+        window.onload = generateIcons;
+    </script>
+</body>
+</html>

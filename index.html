@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Save your parking location and never forget where you parked">
+    <meta name="theme-color" content="#4A90E2">
+    <title>ParkingPal Lite</title>
+    
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin="">
+    
+    <!-- App CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>ParkingPal Lite</h1>
+            <button id="menu-button" class="icon-button" aria-label="Menu">
+                <span class="menu-icon">☰</span>
+            </button>
+        </header>
+
+        <!-- Offline Indicator -->
+        <div id="offline-indicator" class="offline-indicator">
+            📡 Offline Mode
+        </div>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content">
+            <!-- Content will be dynamically loaded here -->
+        </main>
+
+        <!-- Install Button -->
+        <button id="install-button" class="install-button">
+            📱 Install App
+        </button>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    
+    <!-- App Scripts -->
+    <script src="scripts/services/location.js"></script>
+    <script src="scripts/services/photo.js"></script>
+    <script src="scripts/services/storage.js"></script>
+    <script src="scripts/services/map.js"></script>
+    <script src="scripts/services/timer.js"></script>
+    <script src="scripts/services/notification.js"></script>
+    <script src="scripts/services/navigation.js"></script>
+    <script src="scripts/managers/session.js"></script>
+    <script src="scripts/managers/offline.js"></script>
+    <script src="scripts/managers/pwa-install.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
+""
